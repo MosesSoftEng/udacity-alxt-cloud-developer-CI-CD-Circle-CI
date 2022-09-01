@@ -15,6 +15,10 @@ jobs:
       # ... steps for building/testing app ...
       - run: echo "no tests"
 
+      - run: | 
+          echo $DOCKER_PASSWORD
+          echo $DOCKER_USERNAME
+
       - run: |
           docker --version
           docker build -t simple-node .
