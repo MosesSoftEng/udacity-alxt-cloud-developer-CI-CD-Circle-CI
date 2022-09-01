@@ -1,0 +1,35 @@
+# name - title of the workflow as it will appear in the Actions tab of the GitHub repository.
+name: CI deploy node.js docker image to dockerhub
+
+# on - specifies the trigger for this workflow.
+on:
+  # push trigger - runs every time someone pushes a change to the repository or merges a pull request.
+  push:
+    # Specify branches to attach trigger
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+# jobs - a set of steps in a workflow that execute on the same runner.
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # Type of runner - Configures the job to run on the latest version of an Ubuntu Linux runner.
+    runs-on: ubuntu-latest
+
+    # steps - sequence of tasks that will be executed as part of the job
+    steps:
+      # specifies that this step will run v3 of the actions/checkout action. This is an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code (such as build and test tools). You should use the checkout action any time your workflow will run against the repository's code.
+      - uses: actions/checkout@v3
+      
+     # Runs a single command using the runners shell, run tests
+      - name: Run a one-line script
+        run: no tests!
+    
+      # label for task
+      - name: Build the Docker image
+        run: |
+          docker --version
+          docker build -t simple-node .
+          docker tag simple-node mosessofteng/simple-node:latest
+          #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
