@@ -10,9 +10,9 @@ on:
   pull_request:
     branches: [ "master" ]
     
-# # Environment variables
-# env:
-#   DOCKER_USERNAME: Monday
+# Set Environment variables from github secreats
+env:
+  DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
 #   DOCKER_PASSWORD: jj
 
 # jobs - a set of steps in a workflow that execute on the same runner.
@@ -36,7 +36,6 @@ jobs:
       - name: A one-line script
         run: |
           echo $DOCKER_USERNAME
-          echo ${{secrets.DOCKER_USERNAME}}
     
 #       # label for task
 #       - name: Build the Docker image
