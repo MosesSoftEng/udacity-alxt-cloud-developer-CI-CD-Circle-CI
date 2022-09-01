@@ -1,24 +1,21 @@
-language: node_js
-node_js:
-  - 13
+# version key - used to issue warnings about breaking changes.
+version: 2.1
 
-services:
-  - docker
+jobs:
+  build-node-docker:
+    docker:
+      - image: cimg/node:13.0.0
+    steps:
+      - checkout
 
-# Pre-testing installs
-install:
-  - echo "nothing needs to be installed"
+      # ... steps for building/testing app ...
+      - run: echo "no tests"
 
-# Scripts to be run such as tests
-before_script:
-  - echo "no tests"
+      - run: |
+          docker --version
+          docker build -t simple-node .
+          docker tag simple-node mosessofteng/simple-node:latest
 
-script:
-  - docker --version # print the version for logging
-  - docker build -t simple-node .
-  - docker tag simple-node YOUR_DOCKER_HUB/simple-node:latest
-
-# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
-after_success:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push YOUR_DOCKER_HUB/simple-node
+      - run:
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          docker push mosessofteng/simple-node
