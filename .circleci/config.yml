@@ -5,7 +5,8 @@ jobs:
     docker:
       - image: cimg/node:13.0.0
     steps:
-      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
 
       # ... steps for building/testing app ...
       - run: echo "no tests"
