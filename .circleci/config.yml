@@ -1,8 +1,7 @@
 # version key - used to issue warnings about breaking changes.
 version: 2.1
-
 jobs:
-  build-node-docker:
+  build:
     docker:
       - image: cimg/node:13.0.0
     steps:
