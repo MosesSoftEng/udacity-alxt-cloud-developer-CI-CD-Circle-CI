@@ -1,5 +1,5 @@
 # udacity-alxt-cloud-developer-CI-CD-travis
-Continuous integration using Travis CI
+Continuous integration using Citcle CI
 
 ## Overview
 
