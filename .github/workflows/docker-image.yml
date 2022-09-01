@@ -36,7 +36,7 @@ jobs:
       - name: A one-line script
         run: |
           echo $DOCKER_USERNAME
-          echo $DOCKER_PASSWORD
+          echo ${{secrets.DOCKER_USERNAME}}
     
 #       # label for task
 #       - name: Build the Docker image
