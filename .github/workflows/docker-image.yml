@@ -9,6 +9,11 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    
+# # Environment variables
+# env:
+#   DOCKER_USERNAME: Monday
+#   DOCKER_PASSWORD: jj
 
 # jobs - a set of steps in a workflow that execute on the same runner.
 jobs:
@@ -22,19 +27,25 @@ jobs:
       # specifies that this step will run v3 of the actions/checkout action. This is an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code (such as build and test tools). You should use the checkout action any time your workflow will run against the repository's code.
       - uses: actions/checkout@v3
       
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with: 
-            node-version: "13.x"
+#       - name: Use Node.js
+#         uses: actions/setup-node@v3
+#         with: 
+#             node-version: "13.x"
       
      # Runs a single command using the runners shell, run tests
       - name: A one-line script
-        run: echo no tests!
-    
-      # label for task
-      - name: Build the Docker image
         run: |
-          docker --version
-          docker build -t simple-node .
-          docker tag simple-node mosessofteng/simple-node:latest
-#           #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+          echo $DOCKER_USERNAME
+          echo $DOCKER_PASSWORD
+    
+#       # label for task
+#       - name: Build the Docker image
+#         run: |
+#           docker --version
+#           docker build -t simple-node .
+#           docker tag simple-node mosessofteng/simple-node:latest
+# #           #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+#       - run: |
+#           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+#           docker push mosessofteng/simple-node
