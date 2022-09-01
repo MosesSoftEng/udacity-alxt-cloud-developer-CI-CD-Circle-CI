@@ -20,23 +20,21 @@ jobs:
     # steps - sequence of tasks that will be executed as part of the job
     steps:
       # specifies that this step will run v3 of the actions/checkout action. This is an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code (such as build and test tools). You should use the checkout action any time your workflow will run against the repository's code.
-      - uses: actions/checkout@v2
-      
-      - uses: docker/build-push-action@v3.1.1
+      - uses: actions/checkout@v3
       
       - name: Use Node.js
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v3
         with: 
             node-version: "13.x"
       
      # Runs a single command using the runners shell, run tests
-      - name: Run a one-line script
-        run: no tests!
+      - name: A one-line script
+        run: echo no tests!
     
       # label for task
-#       - name: Build the Docker image
-#         run: |
-#           docker --version
-#           docker build -t simple-node .
-#           docker tag simple-node mosessofteng/simple-node:latest
+      - name: Build the Docker image
+        run: |
+          docker --version
+          docker build -t simple-node .
+          docker tag simple-node mosessofteng/simple-node:latest
 #           #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
