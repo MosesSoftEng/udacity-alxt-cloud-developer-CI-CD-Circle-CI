@@ -27,9 +27,9 @@ jobs:
         run: no tests!
     
       # label for task
-      - name: Build the Docker image
-        run: |
-          docker --version
-          docker build -t simple-node .
-          docker tag simple-node mosessofteng/simple-node:latest
-          #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+#       - name: Build the Docker image
+#         run: |
+#           docker --version
+#           docker build -t simple-node .
+#           docker tag simple-node mosessofteng/simple-node:latest
+#           #docker build . --file Dockerfile --tag my-image-name:$(date +%s)
